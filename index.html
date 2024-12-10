@@ -11,12 +11,24 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            position: relative;
         }
         video {
             max-width: 100%;
             height: auto;
             border: 1px solid #ccc;
             margin-top: 50px;
+        }
+
+        /* Filigrane dynamique */
+        .watermark {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            color: rgba(255, 0, 0, 0.5);
+            pointer-events: none;
+            z-index: 9999;
         }
     </style>
     <script>
@@ -25,14 +37,31 @@
             e.preventDefault();
         });
 
-        // Bloquer les raccourcis clavier liés au téléchargement (CTRL+S, CTRL+U, etc.)
+        // Bloquer les raccourcis clavier liés au téléchargement (CTRL+S, CTRL+U, PrintScreen)
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'p')) {
                 e.preventDefault();
             }
+            // Désactiver la touche PrintScreen
+            if (e.key === 'PrintScreen') {
+                e.preventDefault();
+            }
         });
 
-        // Empêcher le glisser-déposer
+        // Empêcher le survol pour éviter certaines extensions de capture d'écran
+        document.addEventListener('mouseover', function(e) {
+            e.preventDefault();
+        });
+
+        // Ajouter un filigrane dynamique
+        window.onload = function() {
+            const watermark = document.createElement('div');
+            watermark.className = 'watermark';
+            watermark.textContent = "ID: utilisateur123";  // Remplacez par l'ID ou autre info dynamique
+            document.body.appendChild(watermark);
+        };
+
+        // Désactiver le glisser-déposer
         document.addEventListener('dragstart', function(e) {
             e.preventDefault();
         });
@@ -40,6 +69,10 @@
 </head>
 <body>
     <h1>Vidéo Protégée</h1>
+
+    <!-- Filigrane dynamique -->
+    <div class="watermark" id="watermark"></div>
+
     <video controls controlslist="nodownload" disablePictureInPicture>
         <source src="اعراض انخفاض السكر.mp4" type="video/mp4">
         Votre navigateur ne supporte pas la lecture vidéo.
