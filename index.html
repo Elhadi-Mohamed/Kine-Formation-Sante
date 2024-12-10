@@ -24,11 +24,23 @@
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
+
+        // Bloquer les raccourcis clavier liés au téléchargement (CTRL+S, CTRL+U, etc.)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'p')) {
+                e.preventDefault();
+            }
+        });
+
+        // Empêcher le glisser-déposer
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
     </script>
 </head>
 <body>
     <h1>Vidéo Protégée</h1>
-    <video controls controlslist="nodownload">
+    <video controls controlslist="nodownload" disablePictureInPicture>
         <source src="اعراض انخفاض السكر.mp4" type="video/mp4">
         Votre navigateur ne supporte pas la lecture vidéo.
     </video>
