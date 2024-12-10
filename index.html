@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture de Vidéo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        video {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            margin-top: 50px;
+        }
+    </style>
+    <script>
+        // Désactiver le clic droit
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</head>
+<body>
+    <h1>Vidéo Protégée</h1>
+    <video controls>
+        <source src="file:///C:/Users/Hib%20Hib/Downloads/%D8%A7%D8%B9%D8%B1%D8%A7%D8%B6%20%D8%A7%D9%86%D8%AE%D9%81%D8%A7%D8%B6%20%D8%A7%D9%84%D8%B3%D9%83%D8%B1.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la lecture vidéo.
+    </video>
+</body>
+</html>
